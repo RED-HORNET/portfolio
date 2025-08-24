@@ -64,8 +64,6 @@
     .skills{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
     .skill{padding:18px; position:relative; overflow:hidden}
     .skill h4{margin:0 0 4px 0}
-    .meter{height:10px; border-radius:999px; background:rgba(255,255,255,.08); overflow:hidden}
-    .meter span{display:block; height:100%; width:0; background:linear-gradient(90deg,var(--accent),var(--accent-2))}
     .tags{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px}
     .tag{padding:6px 10px; border-radius:999px; background:rgba(255,255,255,.06); font-size:.85rem; border:1px solid rgba(255,255,255,.08)}
 
@@ -151,31 +149,26 @@
         <article class="card skill">
           <h4>Python</h4>
           <p class="muted">Scripting, automation, OpenCV basics</p>
-          <div class="meter" data-val="88"><span></span></div>
           <div class="tags"><span class="tag">OOP</span><span class="tag">Data handling</span><span class="tag">OpenCV</span></div>
         </article>
         <article class="card skill">
           <h4>Web (HTML/CSS/JS)</h4>
           <p class="muted">Responsive UI & interactivity</p>
-          <div class="meter" data-val="82"><span></span></div>
           <div class="tags"><span class="tag">Accessibility</span><span class="tag">Animations</span><span class="tag">Vanilla JS</span></div>
         </article>
         <article class="card skill">
           <h4>Databases</h4>
           <p class="muted">SQL Workbench · MySQL</p>
-          <div class="meter" data-val="80"><span></span></div>
           <div class="tags"><span class="tag">Schema design</span><span class="tag">Queries</span></div>
         </article>
         <article class="card skill">
           <h4>Version Control</h4>
           <p class="muted">Git & GitHub workflows</p>
-          <div class="meter" data-val="84"><span></span></div>
           <div class="tags"><span class="tag">Branches</span><span class="tag">PRs</span><span class="tag">Issues</span></div>
         </article>
         <article class="card skill">
           <h4>Blender (3D)</h4>
           <p class="muted">Modeling & animation basics</p>
-          <div class="meter" data-val="70"><span></span></div>
           <div class="tags"><span class="tag">Mesh</span><span class="tag">UV</span><span class="tag">Render</span></div>
         </article>
       </div>
@@ -202,7 +195,7 @@
           <p>Face recognition based attendance tracker leveraging Python and OpenCV.</p>
           <div class="tags"><span class="tag">Python</span><span class="tag">OpenCV</span><span class="tag">ML</span></div>
           <div style="margin-top:auto; display:flex; gap:10px">
-            <a class="btn ghost" href="https://github.com/RED-HORNET?tab=repositories" target="_blank">View Code</a>
+            <a class="btn ghost" href="https://github.com/RED-HORNET/face" target="_blank">View Code</a>
           </div>
         </article>
         <article class="card proj" data-tags="python">
@@ -210,6 +203,9 @@
           <h4>Library Management System</h4>
           <p>In‑memory Python app to manage books, users, issue/return, and stock tracking.</p>
           <div class="tags"><span class="tag">Python</span><span class="tag">CLI</span></div>
+          <div style="margin-top:auto; display:flex; gap:10px">
+            <a class="btn ghost" href="https://github.com/RED-HORNET/library_management_system" target="_blank">View Code</a>
+          </div>
         </article>
         <article class="card proj" data-tags="web">
           <div class="thumb">WEB UI</div>
@@ -252,55 +248,4 @@
           <h4>Links</h4>
           <p><strong>GitHub:</strong> <a href="https://github.com/RED-HORNET?tab=repositories" target="_blank">github.com/RED‑HORNET</a></p>
           <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/anik-das-94193034b/" target="_blank">linkedin.com/in/anik-das-94193034b</a></p>
-          <p><strong>Phone:</strong> <a href="tel:+919692513701">+91 96925 13701</a></p>
-          <p><strong>Location:</strong> Panposh, Rourkela, Odisha</p>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container">© <span id="year"></span> · Built with HTML, CSS & JS · Anik Das</div>
-  </footer>
-
-  <script>
-    // Active nav link on scroll
-    const sections = [...document.querySelectorAll('main section')];
-    const navLinks = [...document.querySelectorAll('.links a')];
-    const setActive = () => {
-      const y = window.scrollY + 120;
-      const id = sections.findLast?.(s => s.offsetTop <= y)?.id || sections[0].id;
-      navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
-    };
-    document.addEventListener('scroll', setActive, {passive:true});
-    setActive();
-
-    // Animate skill meters
-    const meters = document.querySelectorAll('.meter');
-    const obs = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{
-        if(e.isIntersecting){
-          const v = e.target.getAttribute('data-val') || 60;
-          e.target.querySelector('span').style.width = v + '%';
-          obs.unobserve(e.target);
-        }
-      })
-    }, {threshold:.5});
-    meters.forEach(m=>obs.observe(m));
-
-    // Project filter
-    const filter = document.getElementById('filter');
-    const grid = document.getElementById('projectGrid');
-    filter.addEventListener('change', ()=>{
-      const val = filter.value;
-      grid.querySelectorAll('.proj').forEach(card=>{
-        const show = val === 'all' || card.dataset.tags.includes(val);
-        card.style.display = show ? 'flex' : 'none';
-      })
-    });
-
-    // Year
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
-</body>
-</html>
+          <p><strong>Phone:</strong> <a href="tel:+91 9692513701">+91 9692513701</a></p>
